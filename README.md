@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>保單效益深度分析：台幣 vs 美元 (50萬對比)</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; margin: 20px; background-color: #f4f7f6; }
+        h1, h2, h3 { color: #2c3e50; text-align: center; margin-bottom: 25px; }
+        .container { max-width: 1200px; margin: auto; padding: 25px; background-color: #fff; border-radius: 10px; box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+        .note { background-color: #e6f7ff; border-left: 5px solid #6dd5ed; padding: 18px; margin-bottom: 30px; color: #31708f; border-radius: 6px; font-size: 0.95em; }
+        .section-title { text-align: left; color: #34495e; border-bottom: 2px solid #e0e7eb; padding-bottom: 12px; margin-bottom: 30px; font-size: 1.6em; }
+        .chart-wrapper { display: flex; flex-wrap: wrap; justify-content: space-around; margin-bottom: 40px; }
+        .chart-box { flex: 1 1 45%; min-width: 400px; max-width: 550px; background-color: #fcfcfc; border: 1px solid #e0e7eb; border-radius: 8px; padding: 20px; margin: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        canvas { max-width: 100%; height: 350px; display: block; margin: 0 auto; }
+        .chart-box h4 { text-align: center; color: #34495e; margin-bottom: 15px; font-size: 1.2em; }
+        .chart-description { font-size: 0.9em; color: #555; text-align: left; margin-top: 15px; }
+        .key-points { margin-top: 30px; list-style-type: disc; padding-left: 25px; }
+        .key-points li { margin-bottom: 8px; }
+        .highlight-red { color: #e74c3c; font-weight: bold; }
+        .highlight-blue { color: #3498db; font-weight: bold; }
+        .comparison-table { width: 100%; border-collapse: collapse; margin-top: 25px; margin-bottom: 40px; }
+        .comparison-table th, .comparison-table td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        .comparison-table th { background-color: #e8f4f8; font-weight: bold; color: #34495e; }
+        .comparison-table tr:nth-child(even) { background-color: #f8fcfd; }
+        .data-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        .data-table th, .data-table td { border: 1px solid #e0e7eb; padding: 10px; text-align: center; font-size: 0.85em; }
+        .data-table th { background-color: #f0f8ff; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>保單轉換效益深度分析 (以50萬台幣投入為例)</h1>
+        <p class="note">
+            **分析目標：** 對比現有國泰添福增額台幣保單與新式美元保單的各項效益，協助客戶評估轉換決策。<br>
+            **關鍵假設：** 美元保單統一使用 <span class="highlight-blue">4.1% 宣告利率</span>（非保證）。<br>
+            **通膨假設：** 未來 <span class="highlight-blue">2% 通貨膨脹率</span>（非保證）。<br>
+            **匯率假設：** 目前匯率 1 USD = 28.86 TWD (2025年7月3日)。<br>
+            **重要提醒：** 宣告利率與匯率皆會波動，影響實際收益及價值。詳細保障內容請務必詳閱保單條款並諮詢專業保險顧問。
+        </p>
+
+        <h2 class="section-title">一、保單概況對比：台幣 vs 美元</h2>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>項目</th>
+                    <th>國泰添福增額 (台幣)</th>
+                    <th>美元保單 (新式)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>保單幣別</strong></td>
+                    <td>台幣</td>
+                    <td>美元</td>
+                </tr>
+                <tr>
+                    <td><strong>壽險保障 (目前/約略)</strong></td>
+                    <td>358萬台幣 (已停止增長)</td>
+                    <td>200萬 - 250萬台幣等值 (依方案而異)</td>
+                </tr>
+                <tr>
+                    <td><strong>醫療保障</strong></td>
+                    <td>無</td>
+                    <td>通常涵蓋：防癌、重大疾病 (12項)、長照等。部分方案醫療保障額度可達壽險保額的1.6~2倍。</td>
+                </tr>
+                <tr>
+                    <td><strong>現金價值 (目前/購買基礎)</strong></td>
+                    <td>現有約100萬台幣 (解約可得)</td>
+                    <td>以<span class="highlight-red">50萬台幣</span>等值美元 (約17,325 USD) 躉繳購買</td>
+                </tr>
+                <tr>
+                    <td><strong>利息/收益機制</strong></td>
+                    <td>條款有分紅機制，但實際分紅需查詢；保額已停止遞增</td>
+                    <td>宣告利率 4.1% (非保證)，現金價值具複利增值潛力</td>
+                </tr>
+                <tr>
+                    <td><strong>保費狀態</strong></td>
+                    <td>已繳費期滿，無需再繳</td>
+                    <td>躉繳 (一次性繳清)</td>
+                </tr>
+                <tr>
+                    <td><strong>匯率風險</strong></td>
+                    <td>無</td>
+                    <td>有 (美元計價)</td>
+                </tr>
+            </tbody>
+        </table>
+        <p><strong>對比重點：</strong><br>
+            雖然美元保單的壽險保障初期可能比現有台幣保單少了約100-150萬台幣，但這部分保障的差異，變相轉移至**防癌、重大疾病、長照等新式醫療保障**，提供了更符合現代需求的多元保障覆蓋。這是一個從「單純壽險」轉向「<span class="highlight-blue">壽險+健康保障</span>」的選擇。</p>
+
+
+        <h2 class="section-title">二、圖表分析：多維度效益展現</h2>
+
+        <div class="chart-wrapper">
+            <div class="chart-box">
+                <h4>1. 壽險保障金額對比</h4>
+                <canvas id="lifeInsuranceChart"></canvas>
+                <p class="chart-description">
+                    此柱狀圖直觀呈現兩類保單的主要壽險保障金額。現有台幣保單目前保障為358萬，美元保單則依方案在200-250萬台幣等值之間。
+                </p>
+            </div>
+
+            <div class="chart-box">
+                <h4>2. 醫療保障覆蓋面選擇 (美元保單為主)</h4>
+                <canvas id="medicalCoveragePieChart"></canvas>
+                <p class="chart-description">
+                    此圓餅圖展示美元保單在醫療保障上的多元選擇性。它彌補了台幣保單無醫療保障的缺口，為客戶提供更全面的健康風險轉嫁。
+                </p>
+            </div>
+
+            <div class="chart-box">
+                <h4>3. 現金價值預估成長對比 (台幣等值)</h4>
+                <canvas id="cashValueGrowthChart"></canvas>
+                <p class="chart-description">
+                    此折線圖顯示在<span class="highlight-blue">4.1%宣告利率</span>假設下，美元保單現金價值的預估增長。台幣保單現金價值（50萬）在無分紅情況下增長有限。
+                </p>
+            </div>
+
+            <div class="chart-box">
+                <h4>4. 匯率波動下的潛在收益對比 (美元保單)</h4>
+                <canvas id="exchangeRateImpactChart"></canvas>
+                <div class="chart-description">
+                    <p>此折線圖展示美元保單現金價值在不同未來匯率假設下的台幣等值。這不僅是宣告利率的增長，更包含<span class="highlight-blue">潛在的匯差收益</span>！</p>
+                    <p>以下表格呈現未來不同匯率情境下，美元保單在**5年及10年後**的預估現金價值與<span class="highlight-red">潛在總增值金額</span>：</p>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th rowspan="2">情境 (台幣/美元)</th>
+                                <th colspan="2">5年後預估 (投入50萬台幣)</th>
+                                <th colspan="2">10年後預估 (投入50萬台幣)</th>
+                            </tr>
+                            <tr>
+                                <th>預估現金價值 (萬台幣)</th>
+                                <th>潛在總增值 (萬台幣)</th>
+                                <th>預估現金價值 (萬台幣)</th>
+                                <th>潛在總增值 (萬台幣)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>**貶值至 30.00**</td>
+                                <td>約63.7萬</td>
+                                <td><span class="highlight-red">約13.7萬</span></td>
+                                <td>約78.1萬</td>
+                                <td><span class="highlight-red">約28.1萬</span></td>
+                            </tr>
+                            <tr>
+                                <td>**貶值至 32.00**</td>
+                                <td>約68.0萬</td>
+                                <td><span class="highlight-red">約18.0萬</span></td>
+                                <td>約83.3萬</td>
+                                <td><span class="highlight-red">約33.3萬</span></td>
+                            </tr>
+                            <tr>
+                                <td>**貶值至 35.00**</td>
+                                <td>約74.3萬</td>
+                                <td><span class="highlight-red">約24.3萬</span></td>
+                                <td>約91.1萬</td>
+                                <td><span class="highlight-red">約41.1萬</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>這清楚顯示，除了保單本身的利息增長，美元保單在匯率變動下，具有為您創造<span class="highlight-red">額外「匯差」收益</span>的強大潛力，讓您的資產更有效率地成長！</p>
+                </div>
+            </div>
+
+            <div class="chart-box">
+                <h4>5. 通膨影響下的實際購買力 (5年後)</h4>
+                <canvas id="inflationImpactChart"></canvas>
+                <p class="chart-description">
+                    此柱狀圖比較5年後，在<span class="highlight-blue">2%通膨率</span>影響下，台幣保單與美元保單現金價值的實際購買力。美元保單因其較高的潛在收益率，更能有效抵禦通膨侵蝕，長期購買力可能優於台幣保單。
+                </p>
+            </div>
+        </div>
+
+        <h2 class="section-title">三、綜合分析與推薦建議</h2>
+        <ul class="key-points">
+            <li><strong>保障重心轉移：</strong> 台幣保單提供高額單純壽險保障。美元保單雖然初期壽險保障略低，但將資金轉向涵蓋防癌、重疾、長照等更全面的醫療保障，更符合現代人對健康風險的重視。</li>
+            <li><strong>資金增值潛力：</strong> 現有台幣保單的現金價值在繳費期滿後，若無分紅則增長有限。美元保單憑藉較高的宣告利率，在長期複利滾存下，展現出較強的現金價值增值能力，可作為資產規劃的一部分。</li>
+            <li><strong>對抗通膨：</strong> 從通膨影響下的實際購買力來看，美元保單因其較高的潛在收益率，更能有效抵禦通膨侵蝕，長期購買力可能優於台幣保單。</li>
+            <li><strong>匯率與資產配置：</strong> 轉換至美元保單可達到資產多元配置的目的。特別是若預期未來台幣有貶值壓力，美元保單將能為客戶創造可觀的<span class="highlight-red">匯差收益</span>，有效提升整體資產價值。</li>
+        </ul>
+        <p><strong>結論：</strong> 考慮到新式保單提供的<span class="highlight-blue">更廣泛醫療保障範圍</span>、<span class="highlight-blue">更高的資金增值潛力</span>以及<span class="highlight-blue">資產配置多元化</span>的優勢，儘管壽險保障金額初期略有差異，但對於追求全面性保障和長期財富增長的客戶而言，將台幣保單轉換為美元保單，<span class="highlight-red">確實是利大於弊的選擇</span>。客戶應綜合評估自身對醫療保障的需求、對匯率風險的承受度以及長期財務目標。</p>
+
+    </div>
+
+    <script>
+        // --- 基本設定與數據 ---
+        const TWD_TO_USD_RATE = 28.86; // 當前匯率
+        const INITIAL_TWD_CASH_VALUE_OLD_POLICY = 1000000; // 台幣保單原始解約金額
+        const INITIAL_TWD_INVESTMENT_NEW_POLICY = 500000; // 新保單投入金額
+        const INITIAL_USD_PURCHASE = INITIAL_TWD_INVESTMENT_NEW_POLICY / TWD_TO_USD_RATE; // 約17325 USD
+
+        const USD_DECLARATION_RATE = 0.041; // 美元保單統一宣告利率
+        const INFLATION_RATE = 0.02; // 通貨膨脹率
+
+        // 計算未來值函數 (複利)
+        function calculateFV(principal, rate, years) {
+            return principal * Math.pow(1 + rate, years);
+        }
+
+        // --- 1. 壽險保障金額對比 (柱狀圖) ---
+        const lifeInsuranceCtx = document.getElementById('lifeInsuranceChart').getContext('2d');
+        new Chart(lifeInsuranceCtx, {
+            type: 'bar',
+            data: {
+                labels: ['國泰添福增額 (台幣)', '美元保單 (約200-250萬台幣壽險)'],
+                datasets: [{
+                    label: '壽險保障金額 (萬台幣)',
+                    data: [358, 225], // 225萬取200-250萬的約略中間值作為代表
+                    backgroundColor: ['rgba(54, 162, 235, 0.8)', 'rgba(255, 99, 132, 0.8)'],
+                    borderColor: ['rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: '金額 (萬台幣)' },
+                        ticks: { callback: function(value) { return value + '萬'; } }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: { callbacks: { label: function(context) { return context.dataset.label + ': ' + context.raw + '萬台幣'; } } }
+                }
+            }
+        });
+
+        // --- 2. 醫療保障覆蓋面選擇 (圓餅圖) ---
+        // 這個圓餅圖的設計理念是展示 "美元保單" 的保障重心分佈 (壽險 vs 醫療)
+        // 為了圓餅圖效果，我將假設一個概念性的比例來呈現「保障轉移」
+        const medicalCoveragePieCtx = document.getElementById('medicalCoveragePieChart').getContext('2d');
+        new Chart(medicalCoveragePieCtx, {
+            type: 'pie',
+            data: {
+                labels: ['壽險保障 (基礎)', '醫療/健康保障 (新增)'],
+                datasets: [{
+                    data: [65, 35], // 概念性比例：新保單壽險基礎佔比，健康保障新增佔比
+                    backgroundColor: ['rgba(54, 162, 235, 0.8)', 'rgba(75, 192, 192, 0.8)'],
+                    borderColor: ['white', 'white'],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: '新式美元保單保障重心分布 (概念性)'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+                                if (label) { label += ': '; }
+                                label += context.raw + '%';
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+
+        // --- 3. 現金價值預估成長對比 (折線圖 - 台幣等值) ---
+        const cashValueGrowthCtx = document.getElementById('cashValueGrowthChart').getContext('2d');
+        const years = [0, 5, 10, 15];
+        const ntdCashValueData = years.map(y => INITIAL_TWD_INVESTMENT_NEW_POLICY); // 台幣保單假定無增長，以50萬為比較基數
+        const usdCashValueTWD_at_current_rate = years.map(y => calculateFV(INITIAL_USD_PURCHASE, USD_DECLARATION_RATE, y) * TWD_TO_USD_RATE);
+
+        new Chart(cashValueGrowthCtx, {
+            type: 'line',
+            data: {
+                labels: years.map(y => `${y}年後`),
+                datasets: [
+                    {
+                        label: '台幣保單現金價值',
+                        data: ntdCashValueData,
+                        borderColor: 'rgb(201, 203, 207)', // 灰色
+                        backgroundColor: 'rgba(201, 203, 207, 0.2)',
+                        fill: false,
+                        tension: 0.2
+                    },
+                    {
+                        label: '美元保單現金價值 (台幣等值)',
+                        data: usdCashValueTWD_at_current_rate,
+                        borderColor: 'rgb(75, 192, 192)', // 綠色
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        fill: false,
+                        tension: 0.2
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: '金額 (萬台幣)' },
+                        ticks: { callback: function(value) { return (value / 10000).toFixed(0) + '萬'; } }
+                    },
+                    x: {
+                        title: { display: true, text: '時間' }
+                    }
+                },
+                plugins: {
+                    title: { display: true, text: '現金價值預估成長對比 (台幣等值)' }
+                }
+            }
+        });
+
+        // --- 4. 匯率波動下的潛在收益對比 (美元保單) ---
+        const exchangeRateImpactCtx = document.getElementById('exchangeRateImpactChart').getContext('2d');
+        const futureYears_FX = [0, 5, 10]; // 比較5年和10年後
+        const hypotheticalRates = {
+            '匯率30.00': 30.00,
+            '匯率32.00': 32.00,
+            '匯率35.00': 35.00
+        };
+
+        const exchangeRateDatasets = Object.keys(hypotheticalRates).map(label => {
+            const rate = hypotheticalRates[label];
+            const dataPoints = futureYears_FX.map(y => calculateFV(INITIAL_USD_PURCHASE, USD_DECLARATION_RATE, y) * rate);
+            return {
+                label: label,
+                data: dataPoints,
+                borderColor: `hsl(${Math.random() * 360}, 70%, 50%)`, // 隨機顏色
+                backgroundColor: `hsla(${Math.random() * 360}, 70%, 50%, 0.2)`,
+                fill: false,
+                tension: 0.2
+            };
+        });
+
+        new Chart(exchangeRateImpactCtx, {
+            type: 'line',
+            data: {
+                labels: futureYears_FX.map(y => `${y}年後`),
+                datasets: exchangeRateDatasets
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: '金額 (萬台幣)' },
+                        ticks: { callback: function(value) { return (value / 10000).toFixed(0) + '萬'; } }
+                    },
+                    x: {
+                        title: { display: true, text: '時間' }
+                    }
+                },
+                plugins: {
+                    title: { display: true, text: '美元保單現金價值在不同匯率下的台幣等值' }
+                }
+            }
+        });
+
+        // --- 5. 通膨影響下的實際購買力 (5年後) ---
+        const inflationImpactCtx = document.getElementById('inflationImpactChart').getContext('2d');
+
+        // 5年後名目現金價值
+        const ntdNominal5Y = INITIAL_TWD_INVESTMENT_NEW_POLICY; // 台幣保單假定無增長，以50萬為比較基數
+        const usdNominal5Y_twd = calculateFV(INITIAL_USD_PURCHASE, USD_DECLARATION_RATE, 5) * TWD_TO_USD_RATE;
+
+        // 5年後實際購買力 (扣除通膨)
+        const ntdReal5Y = ntdNominal5Y / Math.pow(1 + INFLATION_RATE, 5);
+        const usdReal5Y_twd = usdNominal5Y_twd / Math.pow(1 + INFLATION_RATE, 5);
+
+        new Chart(inflationImpactCtx, {
+            type: 'bar',
+            data: {
+                labels: ['台幣保單', '美元保單'],
+                datasets: [
+                    {
+                        label: '5年後名目現金價值 (萬台幣)',
+                        data: [ntdNominal5Y / 10000, usdNominal5Y_twd / 10000],
+                        backgroundColor: ['rgba(255, 206, 86, 0.8)', 'rgba(153, 102, 255, 0.8)'], // 黃色, 紫色
+                        borderColor: ['rgba(255, 206, 86, 1)', 'rgba(153, 102, 255, 1)'],
+                        borderWidth: 1
+                    },
+                    {
+                        label: '5年後實際購買力 (萬台幣)',
+                        data: [ntdReal5Y / 10000, usdReal5Y_twd / 10000],
+                        backgroundColor: ['rgba(255, 99, 132, 0.8)', 'rgba(54, 162, 235, 0.8)'], // 紅色, 藍色
+                        borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)'],
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: '金額 (萬台幣)' },
+                        ticks: { callback: function(value) { return value.toFixed(0) + '萬'; } }
+                    }
+                },
+                plugins: {
+                    title: { display: true, text: '通膨影響下的實際購買力 (5年後，2%通膨)' }
+                }
+            }
+        });
+
+    </script>
+
+</body>
+</html>
