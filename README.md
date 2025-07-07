@@ -158,7 +158,7 @@
                                 <td>**貶值至 35.00**</td>
                                 <td>約74.3萬</td>
                                 <td><span class="highlight-red">約24.3萬</span></td>
-                                <td>約91.1萬</td>
+                                <td>約91.1萬</td
                                 <td><span class="highlight-red">約41.1萬</span></td>
                             </tr>
                         </tbody>
