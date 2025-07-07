@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>保單效益深度分析：台幣 vs 美元 (50萬對比)</title>
+    <title>保單效益深度分析：台幣 vs 美元 (各50萬對比)</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; margin: 20px; background-color: #f4f7f6; }
@@ -32,9 +32,9 @@
 <body>
 
     <div class="container">
-        <h1>保單轉換效益深度分析 (以50萬台幣投入為例)</h1>
+        <h1>保單轉換效益深度分析 (各投入50萬台幣對比)</h1>
         <p class="note">
-            **分析目標：** 對比現有國泰添福增額台幣保單與新式美元保單的各項效益，協助客戶評估轉換決策。<br>
+            **分析目標：** 將現有台幣保單的價值「一分為二」，一部分維持台幣計價，另一部分轉為美元保單，進行效益對比。<br>
             **關鍵假設：** 美元保單統一使用 <span class="highlight-blue">4.1% 宣告利率</span>（非保證）。<br>
             **通膨假設：** 未來 <span class="highlight-blue">2% 通貨膨脹率</span>（非保證）。<br>
             **匯率假設：** 目前匯率 1 USD = 28.86 TWD (2025年7月3日)。<br>
@@ -46,8 +46,8 @@
             <thead>
                 <tr>
                     <th>項目</th>
-                    <th>國泰添福增額 (台幣)</th>
-                    <th>美元保單 (新式)</th>
+                    <th>國泰添福增額 (台幣) - 調整後</th>
+                    <th>美元保單 (新式) - 以50萬台幣購買</th>
                 </tr>
             </thead>
             <tbody>
@@ -58,8 +58,8 @@
                 </tr>
                 <tr>
                     <td><strong>壽險保障 (目前/約略)</strong></td>
-                    <td>358萬台幣 (已停止增長)</td>
-                    <td>200萬 - 250萬台幣等值 (依方案而異)</td>
+                    <td>179萬台幣 (已停止增長)</td>
+                    <td>100萬 - 150萬台幣等值 (依方案而異)</td>
                 </tr>
                 <tr>
                     <td><strong>醫療保障</strong></td>
@@ -67,9 +67,9 @@
                     <td>通常涵蓋：防癌、重大疾病 (12項)、長照等。部分方案醫療保障額度可達壽險保額的1.6~2倍。</td>
                 </tr>
                 <tr>
-                    <td><strong>現金價值 (目前/購買基礎)</strong></td>
-                    <td>現有約100萬台幣 (解約可得)</td>
-                    <td>以<span class="highlight-red">50萬台幣</span>等值美元 (約17,325 USD) 躉繳購買</td>
+                <td><strong>現金價值 (目前/購買基礎)</strong></td>
+                    <td>現有約50萬台幣</td>
+                    <td>以50萬台幣等值美元 (約17,325 USD) 躉繳購買</td>
                 </tr>
                 <tr>
                     <td><strong>利息/收益機制</strong></td>
@@ -89,7 +89,7 @@
             </tbody>
         </table>
         <p><strong>對比重點：</strong><br>
-            雖然美元保單的壽險保障初期可能比現有台幣保單少了約100-150萬台幣，但這部分保障的差異，變相轉移至**防癌、重大疾病、長照等新式醫療保障**，提供了更符合現代需求的多元保障覆蓋。這是一個從「單純壽險」轉向「<span class="highlight-blue">壽險+健康保障</span>」的選擇。</p>
+            在此「各50萬台幣」的基礎上，美元保單雖然在壽險保障額度上略低於現有台幣保單（179萬 vs 100-150萬），但其核心價值在於提供**防癌、重大疾病、長照等新式多元醫療保障**，彌補了台幣保單在這方面的不足。這代表著保障重心的優化與擴展。</p>
 
 
         <h2 class="section-title">二、圖表分析：多維度效益展現</h2>
@@ -99,7 +99,7 @@
                 <h4>1. 壽險保障金額對比</h4>
                 <canvas id="lifeInsuranceChart"></canvas>
                 <p class="chart-description">
-                    此柱狀圖直觀呈現兩類保單的主要壽險保障金額。現有台幣保單目前保障為358萬，美元保單則依方案在200-250萬台幣等值之間。
+                    此柱狀圖直觀呈現兩類保單在相同投入基礎下，主要壽險保障金額的差異。台幣保單為179萬，美元保單則在100-150萬台幣等值之間。
                 </p>
             </div>
 
@@ -107,7 +107,7 @@
                 <h4>2. 醫療保障覆蓋面選擇 (美元保單為主)</h4>
                 <canvas id="medicalCoveragePieChart"></canvas>
                 <p class="chart-description">
-                    此圓餅圖展示美元保單在醫療保障上的多元選擇性。它彌補了台幣保單無醫療保障的缺口，為客戶提供更全面的健康風險轉嫁。
+                    此圓餅圖概念性地展示美元保單在保障上的多元性，將一部分重心從單純壽險轉移至更全面的醫療/健康保障，這是台幣舊保單所缺乏的。
                 </p>
             </div>
 
@@ -158,7 +158,7 @@
                                 <td>**貶值至 35.00**</td>
                                 <td>約74.3萬</td>
                                 <td><span class="highlight-red">約24.3萬</span></td>
-                                <td>約91.1萬</td
+                                <td>約91.1萬</td>
                                 <td><span class="highlight-red">約41.1萬</span></td>
                             </tr>
                         </tbody>
@@ -178,21 +178,24 @@
 
         <h2 class="section-title">三、綜合分析與推薦建議</h2>
         <ul class="key-points">
-            <li><strong>保障重心轉移：</strong> 台幣保單提供高額單純壽險保障。美元保單雖然初期壽險保障略低，但將資金轉向涵蓋防癌、重疾、長照等更全面的醫療保障，更符合現代人對健康風險的重視。</li>
+            <li><strong>保障重心轉移：</strong> 台幣保單提供179萬壽險保障，而美元保單（在相似投入下）雖然壽險約100-150萬，但將資金轉向涵蓋防癌、重疾、長照等更全面的醫療保障，更符合現代人對健康風險的重視。</li>
             <li><strong>資金增值潛力：</strong> 現有台幣保單的現金價值在繳費期滿後，若無分紅則增長有限。美元保單憑藉較高的宣告利率，在長期複利滾存下，展現出較強的現金價值增值能力，可作為資產規劃的一部分。</li>
             <li><strong>對抗通膨：</strong> 從通膨影響下的實際購買力來看，美元保單因其較高的潛在收益率，更能有效抵禦通膨侵蝕，長期購買力可能優於台幣保單。</li>
             <li><strong>匯率與資產配置：</strong> 轉換至美元保單可達到資產多元配置的目的。特別是若預期未來台幣有貶值壓力，美元保單將能為客戶創造可觀的<span class="highlight-red">匯差收益</span>，有效提升整體資產價值。</li>
         </ul>
-        <p><strong>結論：</strong> 考慮到新式保單提供的<span class="highlight-blue">更廣泛醫療保障範圍</span>、<span class="highlight-blue">更高的資金增值潛力</span>以及<span class="highlight-blue">資產配置多元化</span>的優勢，儘管壽險保障金額初期略有差異，但對於追求全面性保障和長期財富增長的客戶而言，將台幣保單轉換為美元保單，<span class="highlight-red">確實是利大於弊的選擇</span>。客戶應綜合評估自身對醫療保障的需求、對匯率風險的承受度以及長期財務目標。</p>
+        <p><strong>結論：</strong> 考慮到新式保單提供的<span class="highlight-blue">更廣泛醫療保障範圍</span>、<span class="highlight-blue">更高的資金增值潛力</span>以及<span class="highlight-blue">資產配置多元化</span>的優勢，儘管壽險保障金額初期略有差異，但對於追求全面性保障和長期財富增長的客戶而言，將部分台幣保單價值轉換為美元保單，<span class="highlight-red">確實是利大於弊的選擇</span>。客戶應綜合評估自身對醫療保障的需求、對匯率風險的承受度以及長期財務目標。</p>
 
     </div>
 
     <script>
         // --- 基本設定與數據 ---
         const TWD_TO_USD_RATE = 28.86; // 當前匯率
-        const INITIAL_TWD_CASH_VALUE_OLD_POLICY = 1000000; // 台幣保單原始解約金額
-        const INITIAL_TWD_INVESTMENT_NEW_POLICY = 500000; // 新保單投入金額
-        const INITIAL_USD_PURCHASE = INITIAL_TWD_INVESTMENT_NEW_POLICY / TWD_TO_USD_RATE; // 約17325 USD
+        const INITIAL_TWD_CASH_VALUE_OLD_POLICY = 1000000; // 台幣保單原始總現金價值
+        const NTD_POLICY_SPLIT_CASH_VALUE = 500000; // 台幣保單在此對比中呈現的現金價值
+        const NTD_POLICY_SPLIT_LIFE_SUM_ASSURED = 1790000; // 台幣保單在此對比中呈現的壽險保障
+
+        const NEW_USD_POLICY_INVESTMENT_TWD = 500000; // 新美元保單投入金額
+        const NEW_USD_POLICY_INVESTMENT_USD = NEW_USD_POLICY_INVESTMENT_TWD / TWD_TO_USD_RATE; // 約17325 USD
 
         const USD_DECLARATION_RATE = 0.041; // 美元保單統一宣告利率
         const INFLATION_RATE = 0.02; // 通貨膨脹率
@@ -207,10 +210,10 @@
         new Chart(lifeInsuranceCtx, {
             type: 'bar',
             data: {
-                labels: ['國泰添福增額 (台幣)', '美元保單 (約200-250萬台幣壽險)'],
+                labels: ['國泰添福增額 (台幣)', '美元保單 (約100-150萬台幣壽險)'],
                 datasets: [{
                     label: '壽險保障金額 (萬台幣)',
-                    data: [358, 225], // 225萬取200-250萬的約略中間值作為代表
+                    data: [NTD_POLICY_SPLIT_LIFE_SUM_ASSURED / 10000, 125], // 125萬取100-150萬的約略中間值作為代表
                     backgroundColor: ['rgba(54, 162, 235, 0.8)', 'rgba(255, 99, 132, 0.8)'],
                     borderColor: ['rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)'],
                     borderWidth: 1
@@ -233,8 +236,6 @@
         });
 
         // --- 2. 醫療保障覆蓋面選擇 (圓餅圖) ---
-        // 這個圓餅圖的設計理念是展示 "美元保單" 的保障重心分佈 (壽險 vs 醫療)
-        // 為了圓餅圖效果，我將假設一個概念性的比例來呈現「保障轉移」
         const medicalCoveragePieCtx = document.getElementById('medicalCoveragePieChart').getContext('2d');
         new Chart(medicalCoveragePieCtx, {
             type: 'pie',
@@ -272,8 +273,8 @@
         // --- 3. 現金價值預估成長對比 (折線圖 - 台幣等值) ---
         const cashValueGrowthCtx = document.getElementById('cashValueGrowthChart').getContext('2d');
         const years = [0, 5, 10, 15];
-        const ntdCashValueData = years.map(y => INITIAL_TWD_INVESTMENT_NEW_POLICY); // 台幣保單假定無增長，以50萬為比較基數
-        const usdCashValueTWD_at_current_rate = years.map(y => calculateFV(INITIAL_USD_PURCHASE, USD_DECLARATION_RATE, y) * TWD_TO_USD_RATE);
+        const ntdCashValueData = years.map(y => NTD_POLICY_SPLIT_CASH_VALUE); // 台幣保單假定無增長，以50萬為比較基數
+        const usdCashValueTWD_at_current_rate = years.map(y => calculateFV(NEW_USD_POLICY_INVESTMENT_USD, USD_DECLARATION_RATE, y) * TWD_TO_USD_RATE);
 
         new Chart(cashValueGrowthCtx, {
             type: 'line',
@@ -327,7 +328,7 @@
 
         const exchangeRateDatasets = Object.keys(hypotheticalRates).map(label => {
             const rate = hypotheticalRates[label];
-            const dataPoints = futureYears_FX.map(y => calculateFV(INITIAL_USD_PURCHASE, USD_DECLARATION_RATE, y) * rate);
+            const dataPoints = futureYears_FX.map(y => calculateFV(NEW_USD_POLICY_INVESTMENT_USD, USD_DECLARATION_RATE, y) * rate);
             return {
                 label: label,
                 data: dataPoints,
@@ -365,9 +366,9 @@
         // --- 5. 通膨影響下的實際購買力 (5年後) ---
         const inflationImpactCtx = document.getElementById('inflationImpactChart').getContext('2d');
 
-        // 5年後名目現金價值
-        const ntdNominal5Y = INITIAL_TWD_INVESTMENT_NEW_POLICY; // 台幣保單假定無增長，以50萬為比較基數
-        const usdNominal5Y_twd = calculateFV(INITIAL_USD_PURCHASE, USD_DECLARATION_RATE, 5) * TWD_TO_USD_RATE;
+        // 5年後名目現金價值 (NTD based on 50萬)
+        const ntdNominal5Y = NTD_POLICY_SPLIT_CASH_VALUE;
+        const usdNominal5Y_twd = calculateFV(NEW_USD_POLICY_INVESTMENT_USD, USD_DECLARATION_RATE, 5) * TWD_TO_USD_RATE;
 
         // 5年後實際購買力 (扣除通膨)
         const ntdReal5Y = ntdNominal5Y / Math.pow(1 + INFLATION_RATE, 5);
